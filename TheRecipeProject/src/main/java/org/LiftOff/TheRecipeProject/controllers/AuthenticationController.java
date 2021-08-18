@@ -54,8 +54,9 @@ public class AuthenticationController {
         return "register";
     }
 
-    @PostMapping(//url for registration){
-        public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletRequest request, Model model){
+    @PostMapping("//TODO:")
+    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletRequest request, Model model){
+
 
             if(errors.hasErrors()){
             model.addAttribute("title","Register");
@@ -85,14 +86,14 @@ public class AuthenticationController {
         return "redirect:";
     }
 
-    @GetMapping(//url for login){
+    @GetMapping("//TODO1:")
     public String displayLoginForm(Model model){
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
         return "";
     }
 
-    @PostMapping("")
+    @PostMapping("//TODO1:")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors, HttpServletRequest request, Model model){
         if(errors.hasErrors()){
             model.addAttribute("title", "Log In");
