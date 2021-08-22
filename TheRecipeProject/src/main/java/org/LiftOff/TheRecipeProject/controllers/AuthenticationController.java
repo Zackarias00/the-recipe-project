@@ -47,14 +47,14 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey,user.getId());
     }
 
-    @GetMapping("//TODO:")
+    @GetMapping("/register")
     public String displayRegistrationForm(Model model){
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title","Register");
         return "register";
     }
 
-    @PostMapping("//TODO:")
+    @PostMapping("/register")
     public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletRequest request, Model model){
 
 
@@ -86,18 +86,18 @@ public class AuthenticationController {
         return "redirect:";
     }
 
-    @GetMapping("//TODO1:")
+    @GetMapping("/login")
     public String displayLoginForm(Model model){
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
-        return "";
+        return "login";
     }
 
-    @PostMapping("//TODO1:")
+    @PostMapping("/login")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors, HttpServletRequest request, Model model){
         if(errors.hasErrors()){
             model.addAttribute("title", "Log In");
-            return "";
+            return "login";
         }
 
         User theUser = userRepository.findByUsername((loginFormDTO.getUsername()));
@@ -105,7 +105,7 @@ public class AuthenticationController {
         if(theUser == null){
             errors.rejectValue("username", "user.invalid", "The given username does not exist.");
             model.addAttribute("title","Log In");
-            return "";
+            return "login";
         }
 
         String password = loginFormDTO.getPassword();
@@ -113,12 +113,12 @@ public class AuthenticationController {
         if(!theUser.isMatchingPassword(password)){
             errors.rejectValue("password","password.invalid","Invalid password");
             model.addAttribute("title", "Log In");
-            return "";
+            return "login";
         }
 
         setUserInSession(request.getSession(), theUser);
 
-        return "";
+        return "login";
 
     }
 

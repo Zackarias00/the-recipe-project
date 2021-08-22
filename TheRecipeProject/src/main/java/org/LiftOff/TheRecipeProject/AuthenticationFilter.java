@@ -22,7 +22,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
     @Autowired
     AuthenticationController authenticationController;
 
-    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/css");
+    private static final List<String> whitelist = Arrays.asList("/recipes","/login", "/register", "/logout", "/css");
 
     private static boolean isWhiteListed(String path){
         for(String pathRoot : whitelist){
@@ -49,7 +49,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
             return true;
         }
 
-        response.sendRedirect("/login");
+        response.sendRedirect("/recipes");
         return false;
     }
 }
